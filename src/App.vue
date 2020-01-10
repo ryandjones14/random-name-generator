@@ -21,7 +21,7 @@
       {{sprintName}}
       <button v-if="shouldShowSave" @click="saveName(sprintName)">save</button>
     </div>
-    <PastNamesList v-if="pastNames" :pastNames="pastNames"/>
+    <PastNamesList v-if="pastNames.length" :pastNames="pastNames"/>
   </div>
 </template>
 
