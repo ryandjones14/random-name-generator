@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="theme-picker">
     <h3>{{title}}</h3>
     <div class="selected-theme" v-if="selectedTheme">
       <div class="theme-box">
@@ -39,6 +39,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.theme-picker {
+  background-color: rgb(206, 186, 193);
+  border: solid 1px rgb(186, 166, 173);
+  width: 65%;
+  margin: 0 auto;
+  margin-bottom: 15px;
+}
 .selected-theme {
   display: flex;
   flex-direction: column;
@@ -48,22 +55,22 @@ export default {
 .selected-theme > * {
   flex: 1;
   margin: 0 auto;
-  width: 200px;
+  width: 110px;
 }
 .theme-list {
   display: flex;
   justify-content: space-around;
-  height: 230px;
+  height: 140px;
   margin: 20px 0;
 }
 .theme-box {
-  flex: 1 200px;
-  max-width: 200px;
+  flex: 1 110px;
+  max-width: 110px;
   background-color: rgb(126, 158, 126);
   border: solid 1px rgb(25, 38, 26);
   border-radius: 2%;
-  max-height: 200px;
-  height: 200px;
+  max-height: 110px;
+  height: 110px;
   margin-bottom: 5px;
 }
 .theme-box.unselected {

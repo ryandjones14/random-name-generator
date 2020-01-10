@@ -18,7 +18,7 @@ export default {
 .name-list {
   background-color: rgb(206, 186, 193);
   border: solid 1px rgb(186, 166, 173);
-  width: 50%;
+  width: 65%;
   margin: 0 auto;
 }
 .name {

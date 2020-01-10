@@ -654,17 +654,19 @@ body {
   margin-top: 30px;
 }
 h3 {
-  margin: 0 0 25px;
-  font-size: 28px;
+  margin: 0 0 15px;
+  font-size: 24px;
 }
 .sprint-name {
-  font-size: 48px;
+  font-size: 34px;
   margin: 10px 0;
 }
 button {
   background-color: rgb(87, 110, 90);
+  border: solid 1px rgb(69, 87, 72);
+  border-radius: 1%;
   color: rgb(230, 204, 213);
-  font-size: 18px;
+  font-size: 16px;
   cursor: pointer;
 }
 .new-button {
