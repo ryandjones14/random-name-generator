@@ -28,6 +28,7 @@
 <script>
 import ThemePicker from './components/ThemePicker.vue'
 import PastNamesList from './components/PastNamesList.vue'
+const NAMES_URL = 'http://localhost:5000/names';
 
 export default {
   name: 'app',
@@ -587,7 +588,17 @@ export default {
       selectedNounTheme: null,
       sprintName: null,
       pastNames: [],
+      name: {
+        text: ''
+      }
     };
+  },
+  mounted() {
+    fetch(NAMES_URL)
+      .then(response => response.json())
+      .then(result => {
+        this.pastNames = result;
+      });
   },
   computed: {
     hasSelections: function() {
@@ -597,7 +608,7 @@ export default {
       return this.hasSelections && !!this.sprintName;
     },
     shouldShowSave: function() {
-      return !this.pastNames.map(name => name.name).includes(this.sprintName);
+      return !this.pastNames.map(name => name.text).includes(this.sprintName);
     },
   },
   methods: {
@@ -633,9 +644,31 @@ export default {
       this.sprintName = `${adjective} ${noun}`;
     },
     saveName: function(name) {
-      let pastNamesCopy = this.pastNames;
-      pastNamesCopy.push({name, id: this.pastNames.length});
-      this.pastNames = pastNamesCopy;
+      // console.log(name);
+      this.name.text = name;
+      fetch(NAMES_URL, {
+        method: "POST",
+        body: JSON.stringify(this.name),
+        headers: {
+          "content-type": "application/json"
+        }
+      })
+        .then(response => response.json())
+        .then(result => {
+          if (result.details) {
+            // there was an error...
+            const error = result.details
+              .map(detail => detail.message)
+              .join(". ");
+            this.error = error;
+          } else {
+            this.error = "";
+            this.showMessageForm = false;
+            let pastNamesCopy = this.pastNames;
+            pastNamesCopy.push(this.name);
+            this.pastNames = pastNamesCopy;
+          }
+      });
     }
   }
 }
