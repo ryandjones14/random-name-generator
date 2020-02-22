@@ -1,4 +1,4 @@
-# sprint-name-generator
+# random-name-generator
 
 ## Project setup
 ```
