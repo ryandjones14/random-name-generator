@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const morgan = require('morgan');
 var serveStatic = require('serve-static');
 var path = require('path');
 const mongoose = require('mongoose');
@@ -13,12 +12,10 @@ mongoose.connection.on('error', (err) => {
   console.error(`🙅 🚫 🙅 🚫 🙅 🚫 🙅 🚫 → ${err.message}`);
 });
 
-
 const app = express();
 
 const names = require('./models/Name');
 
-app.use(morgan('tiny'));
 app.use(cors());
 app.use(bodyParser.json());
 
