@@ -1,6 +1,6 @@
 <template>
   <div class="theme-picker">
-    <h3>{{title}}</h3>
+    <h3 class="top-row-item">{{title}}</h3>
     <div class="selected-theme" v-if="selectedTheme">
       <div class="theme-box">
         {{selectedTheme.name}}
@@ -38,42 +38,60 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-.theme-picker {
-  background-color: rgb(206, 186, 193);
-  border: solid 1px rgb(186, 166, 173);
-  width: 65%;
-  margin: 0 auto;
-  margin-bottom: 15px;
-}
-.selected-theme {
-  display: flex;
-  flex-direction: column;
-  margin: 20px 0;
-  transition: 5s ease;
-}
-.selected-theme > * {
-  flex: 1;
-  margin: 0 auto;
-  width: 110px;
-}
-.theme-list {
-  display: flex;
-  justify-content: space-around;
-  height: 140px;
-  margin: 20px 0;
-}
-.theme-box {
-  flex: 1 110px;
-  max-width: 110px;
-  background-color: rgb(126, 158, 126);
-  border: solid 1px rgb(25, 38, 26);
-  border-radius: 2%;
-  max-height: 110px;
-  height: 110px;
-  margin-bottom: 5px;
-}
-.theme-box.unselected {
-  cursor: pointer;
-}
+<style scoped lang="sass">
+$theme-box-color: rgb(126, 158, 126)
+$button-color: rgb(87, 110, 90)
+
+h3
+  margin: 0 0 15px
+  font-size: 24px
+.theme-picker
+  background-color: rgb(206, 186, 193)
+  border: solid 1px rgb(186, 166, 173)
+  width: 65%
+  margin: 0 auto
+  margin-bottom: 15px
+
+.selected-theme
+  display: flex
+  flex-direction: column
+  margin: 20px 0
+  transition: 5s ease
+
+.selected-theme > *
+  flex: 1
+  margin: 0 auto
+  width: 110px
+
+.theme-list 
+  display: flex
+  justify-content: space-around
+  height: 140px
+  margin: 20px 0
+
+.theme-box
+  flex: 1 110px
+  max-width: 150px
+  height: 110px
+  background-color: $theme-box-color
+  border: solid 1px rgb(25, 38, 26)
+  border-radius: 2%
+  margin-bottom: 5px
+  font-size: 24px
+
+  &.unselected
+    cursor: pointer
+    height: 110px
+    &:hover
+      background-color: lighten($theme-box-color, 10%)
+.reset-btn
+  background-color: $button-color
+  border: solid 1px rgb(69, 87, 72)
+  border-radius: 1%
+  color: rgb(230, 204, 213)
+  font-size: 16px
+  cursor: pointer
+
+  &:hover
+    background-color: lighten($button-color, 10%)
 </style>
