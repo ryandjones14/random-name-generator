@@ -6,9 +6,7 @@ var path = require('path');
 const mongoose = require('mongoose');
 
 require('dotenv').config({ path: 'variables.env' });
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, dbName: 'random-name-generator' }).
-  then(() => console.log('Connected')).
-  catch(err => console.log('Caught', err.stack));
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.Promise = global.Promise;
 mongoose.connection.on('error', (err) => {
   console.error(`🙅 🚫 🙅 🚫 🙅 🚫 🙅 🚫 → ${err.message}`);
@@ -22,14 +20,8 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.get('/names', async (req, res) => {
-  console.log('/names is being fetched');
   await names.find().then((names) => {
-    console.log(`/names => ${names}`);
     res.json(names);
-  }).catch((e) =>{
-    console.log(`/names => error: ${e}`);
-    res.status(500);
-    res.json(error);
   });
 });
 
