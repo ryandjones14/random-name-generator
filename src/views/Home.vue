@@ -41,7 +41,7 @@ export default {
       selectedAdjectiveTheme: null,
       selectedNounTheme: null,
       sprintName: null,
-      savedNames: [],
+      pastNames: [],
       name: {
         text: ''
       }
@@ -51,15 +51,16 @@ export default {
     fetch(`http://localhost:5000/names`)
       .then(response => response.json())
       .then(result => {
-        this.savedNames = result;
+        this.pastNames = result;
       }).catch((e) => {
         console.log(e); // eslint-disable no-console
       });
   },
   computed: mapState({
+    // arrow functions can make the code very succinct!
     adjectiveThemes: state => state.adjectiveThemes,
     nounThemes: state => state.nounThemes,
-    // savedNames: state => state.savedNames,
+    savedNames: state => state.savedNames,
     hasSelections: function() {
       return !!this.selectedAdjectiveTheme && !!this.selectedNounTheme;
     },
@@ -67,7 +68,7 @@ export default {
       return this.hasSelections && !!this.sprintName;
     },
     shouldShowSave: function() {
-      return !this.savedNames.map(name => name.text).includes(this.sprintName);
+      return !this.pastNames.map(name => name.text).includes(this.sprintName);
     },
   }),
   methods: {
@@ -123,9 +124,9 @@ export default {
           } else {
             this.error = "";
             this.showMessageForm = false;
-            let savedsavedNamesCopy = this.savedsavedNames;
-            savedsavedNamesCopy.push(this.name);
-            this.savedsavedNames = savedsavedNamesCopy;
+            let savedNamesCopy = this.savedNames;
+            savedNamesCopy.push(this.name);
+            this.savedNames = savedNamesCopy;
           }
       });
     }
