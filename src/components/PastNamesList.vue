@@ -1,15 +1,15 @@
 <template>
   <div class="name-list">
     <h3>saved names</h3>
-    <div v-for="name in savedNames" :key="name._id" class="name">{{name.text}}</div>
+    <div v-for="name in pastNames" :key="name.id" class="name">{{name.name}}</div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'SavedNamesList',
+  name: 'PastNamesList',
   props: {
-    savedNames: Array,
+    pastNames: Array,
   },
 }
 </script>
