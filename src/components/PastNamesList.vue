@@ -1,7 +1,7 @@
 <template>
   <div class="name-list">
     <h3>saved names</h3>
-    <div v-for="name in pastNames" :key="name._id" class="name">{{name.text}}</div>
+    <div v-for="name in pastNames" :key="name.id" class="name">{{name.name}}</div>
   </div>
 </template>
 
